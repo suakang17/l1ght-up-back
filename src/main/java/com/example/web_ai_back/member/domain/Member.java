@@ -3,6 +3,8 @@ package com.example.web_ai_back.member.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -15,7 +17,8 @@ public class Member {
     private long idx;
 
     @Column(nullable = false)
-    private String memberPw;
+    private String uuid;
+
 
     @Column(nullable = false, length = 30)  // 시각장애이다보니 입력받는 것보다 랜덤생성 기능을 넣는것도 not bad...
     private String nickname;
@@ -24,9 +27,9 @@ public class Member {
 //    private Role role;
 
     //== 회원 정보 수정 ==//
-    public void updatePw(String memberPw){
-        this.memberPw = memberPw;
-    }
+//    public void updatePw(String memberPw){
+//        this.memberPw = memberPw;
+//    }
 
     //== pw 암호화 - 해싱 ==//
 

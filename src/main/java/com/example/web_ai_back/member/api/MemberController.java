@@ -22,9 +22,4 @@ public class MemberController {
         return memberService.signup(memberDto);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity memberLogin(@RequestBody MemberDto memberDto) {
-        return memberService.login(memberDto);
-    }
-
 }
