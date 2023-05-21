@@ -11,4 +11,7 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
     
     // 특정 멤버의 사진은 데이터로써 가치가 좋다, 나쁘다 ... 의 연장선을 위한 메서드
     Optional<Image> findByMemberIdx(long idx);
+
+    @Override
+    <S extends Image> S save(S entity);
 }
