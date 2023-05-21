@@ -26,7 +26,7 @@ public class Member {
     @Column(nullable = false, length = 30)  // 시각장애이다보니 입력받는 것보다 닉네임 랜덤생성 기능을 넣는것도 not bad...
     private String nickname;
 
-    @OneToMany(mappedBy = "member")  // member에 의해 image가 매핑되는거
+    @OneToMany(mappedBy = "member")
     @Builder.Default
     private List<Image> images = new ArrayList<Image>();
 

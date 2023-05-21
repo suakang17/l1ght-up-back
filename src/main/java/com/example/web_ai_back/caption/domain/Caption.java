@@ -2,11 +2,19 @@ package com.example.web_ai_back.caption.domain;
 
 import com.example.web_ai_back.image.domain.Image;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Caption {
 
     @Id
@@ -25,4 +33,8 @@ public class Caption {
     @ElementCollection
     private Set<String> dangerFactor;  // 중복될 일 없으니 set로 지정
 
+    public void update(String originalCaption, Set<String> dangerFactor) {
+        this.originalCaption = originalCaption;
+        this.dangerFactor = dangerFactor;
+    }
 }

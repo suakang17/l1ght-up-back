@@ -1,6 +1,5 @@
 package com.example.web_ai_back.member.api;
 
-import com.example.web_ai_back.member.domain.Member;
 import com.example.web_ai_back.member.dto.MemberDto;
 import com.example.web_ai_back.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/member")
 @RequiredArgsConstructor
-public class MemberController {
+public class MemberApi {
 
     private final MemberService memberService;
 
