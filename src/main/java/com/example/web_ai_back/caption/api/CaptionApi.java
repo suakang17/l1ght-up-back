@@ -28,5 +28,8 @@ public class CaptionApi {
     public ResponseEntity<CaptionDto> captionUpdate(@RequestParam Long idx, @RequestBody CaptionDto captionDto) {
         return captionService.update(idx, captionDto);
     }
+    
+    // find caption by imageId도 구현해야함 - 관리자 입장
+    // 기타 구현사항 있는지 의견나누기
 
 }

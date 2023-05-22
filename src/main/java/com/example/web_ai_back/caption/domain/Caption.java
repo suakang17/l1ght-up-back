@@ -31,7 +31,7 @@ public class Caption {
 
     @Column(nullable = false)
     @ElementCollection
-    private Set<String> dangerFactor;  // 중복될 일 없으니 set로 지정
+    private Set<String> dangerFactor;  // 중복될 일 없으니 set로 지정 // !! danger Factor field 생성 안되는 이슈 !!
 
     public void update(String originalCaption, Set<String> dangerFactor) {
         this.originalCaption = originalCaption;

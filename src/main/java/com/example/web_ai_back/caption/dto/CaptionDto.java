@@ -4,10 +4,12 @@ import com.example.web_ai_back.caption.domain.Caption;
 import com.example.web_ai_back.image.domain.Image;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Getter
+@NoArgsConstructor
 public class CaptionDto {
 
     private Long idx;
@@ -23,6 +25,7 @@ public class CaptionDto {
         this.dangerFactor = dangerFactor;
     }
 
+    // update시 수정할 요소가 뭐가 있을지에 대한 고민 필요
     @Builder
     public CaptionDto(String originalCaption, Set<String> dangerFactor) {
         this.originalCaption = originalCaption;

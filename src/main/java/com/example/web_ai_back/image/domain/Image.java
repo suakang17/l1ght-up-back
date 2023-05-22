@@ -39,8 +39,12 @@ public class Image {
     @Column(nullable = false)
     private Gps gps;
 
-    // 연관관계 설정
-    public void setMember(Member member) {
-        this.member = member;
+//    // 연관관계 설정
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
+
+    public void update(List<Caption> captions) {
+        this.captions = captions;
     }
 }

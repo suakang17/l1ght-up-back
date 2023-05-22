@@ -21,8 +21,8 @@ public class CaptionService {
 
     public ResponseEntity<CaptionDto> save(CaptionDto captionDto) {
 
-        Image image = imageRepository.findByIdx(captionDto.getIdx())
-                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + captionDto.getIdx()));
+        Image image = imageRepository.findByIdx(captionDto.getImageIdx())
+                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + captionDto.getImageIdx()));
 
         captionRepository.save(captionDto.toEntity(image));
 
