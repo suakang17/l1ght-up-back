@@ -38,7 +38,7 @@ public class ImageDto {
         this.gps = gps;
     }
     
-    // update시 수정할 요소가 뭐가 있을지에 대한 고민 필요 - 관리자
+    // update시 수정할 요소가 뭐가 있을지에 대한 고민 필요 - 관리자 - 캡션, 경로 ...
     @Builder
     public ImageDto(List<Caption> captions) {
         this.captions = captions;

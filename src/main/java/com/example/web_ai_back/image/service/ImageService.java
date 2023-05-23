@@ -54,7 +54,11 @@ public class ImageService {
         Image image = imageRepository.findByIdx(idx)
                 .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + idx));
 
-        image.update(imageDto.getCaptions());  // jpa사용시 영속성 컨텍스트 유지가 되므로 entity값만 변경해도 db 반영됨(별도 update query 필요x)
+        // 캡션 수정
+        image.updateCaption(imageDto.getCaptions());  // jpa사용시 영속성 컨텍스트 유지가 되므로 entity값만 변경해도 db 반영됨(별도 update query 필요x)
+        
+        // 저장 경로 수정
+//        image.updateSavedPath(imageDto.getSavedPath());
 
         ImageDto updatedImageDto = ImageDto.builder()
                 .captions(image.getCaptions())

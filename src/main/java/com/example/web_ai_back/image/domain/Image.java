@@ -44,7 +44,10 @@ public class Image {
 //        this.member = member;
 //    }
 
-    public void update(List<Caption> captions) {
+    // update시 수정할 요소가 뭐가 있을지에 대한 고민 필요 - 관리자 - 캡션, 경로 ...
+    public void updateCaption(List<Caption> captions) {
         this.captions = captions;
     }
+
+    public void updateSavedPath(String savedPath) { this.savedPath = savedPath; }
 }
