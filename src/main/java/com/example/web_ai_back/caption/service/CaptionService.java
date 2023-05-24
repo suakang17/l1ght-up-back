@@ -72,21 +72,18 @@ public class CaptionService {
                 .build();
     }
 
-    public List<Caption> toEntityList(List<String> captions, ImageDto imageDto) {
+    public List<Caption> toEntityList(List<String> captions, Long imgIdx) {
 
-        Image image = imageRepository.findByIdx(imageDto.getIdx())
-                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + imageDto.getIdx()));
+        Image image = imageRepository.findByIdx(imgIdx)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + imgIdx));
 
-        List<Caption> newCaptionList = captions.stream().map(o -> toEntityWhileSaveImage(image, o)).collect(Collectors.toList());
 
-        return newCaptionList;
+        return captions.stream().map(o -> toEntityWhileSaveImage(image, o)).collect(Collectors.toList());
     }
 
     public List<CaptionDto> toDtoList(List<Caption> captions) {
 
-        List<CaptionDto> captionDtoList = captions.stream().map(o -> toDto(o)).collect(Collectors.toList());
-
-        return captionDtoList;
+        return captions.stream().map(o -> toDto(o)).collect(Collectors.toList());
     }
 
     private CaptionDto toDto(Caption o) {
@@ -101,8 +98,6 @@ public class CaptionService {
 
     public List<String> toStringList(List<CaptionDto> captionDtoList) {
 
-        List<String> stringCaptionList = captionDtoList.stream().map(o -> o.getOriginalCaption().toString()).collect(Collectors.toList());
-
-        return stringCaptionList;
+        return captionDtoList.stream().map(o -> o.getOriginalCaption().toString()).collect(Collectors.toList());
     }
 }

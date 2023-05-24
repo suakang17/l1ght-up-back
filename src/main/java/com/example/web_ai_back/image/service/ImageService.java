@@ -33,16 +33,12 @@ public class ImageService {
         Member member = memberRepository.findByIdx(imageDto.getMemberIdx())
                 .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다. idx=" + imageDto.getMemberIdx()));
 
-        imageRepository.save(imageDto.toEntity(member));
+        Image newImage = imageRepository.save(imageDto.toEntity(member));
+        if (imageDto.getCaptions() == null || imageDto.getCaptions().isEmpty()) {
+            return new ResponseEntity<>(imageDto, HttpStatus.OK);
 
-        try {
-            captionRepository.saveAll(captionService.toEntityList(imageDto.getCaptions(), imageDto));
-
-            // img 객체에 해당하는 caption setting 로직
-            update(imageDto);
-
-        } catch (IllegalArgumentException e) { System.out.println("캡션 is null");}
-        
+        } else { captionRepository.saveAll(captionService.toEntityList(imageDto.getCaptions(), newImage.getIdx()));
+        }
 
         return new ResponseEntity<>(imageDto, HttpStatus.OK);
     }
