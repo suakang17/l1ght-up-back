@@ -14,10 +14,11 @@ public class CaptionApi {
 
     private final CaptionService captionService;
 
-    @PostMapping("/create")
-    public ResponseEntity<CaptionDto> captionCreate(@RequestBody CaptionDto captionDto) {
-        return captionService.save(captionDto);
-    }
+    // image단에서 caption 등록을 수행하므로 불필요한 api
+//    @PostMapping("/create")
+//    public ResponseEntity<CaptionDto> captionCreate(@RequestBody CaptionDto captionDto) {
+//        return captionService.save(captionDto);
+//    }
 
     @GetMapping("/captionIdx")
     public ResponseEntity<CaptionDto> getCaptionByIdx(@RequestParam Long idx) {
