@@ -62,22 +62,24 @@ public class ImageService {
         return new ResponseEntity<>(newImageDto, HttpStatus.OK);
     }
 
-    public ResponseEntity<ImageDto> update(ImageDto imageDto) {
 
-        Image image = imageRepository.findByIdx(imageDto.getIdx())
-                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + imageDto.getIdx()));
-
-        // 캡션 수정, update
-        image.updateCaption(captionRepository.findByImage(image.getIdx()));  // jpa사용시 영속성 컨텍스트 유지가 되므로 entity값만 변경해도 db 반영됨(별도 update query 필요x)
-        
-        // 저장 경로 수정
-//        image.updateSavedPath(imageDto.getSavedPath());
-        List<CaptionDto> captionDtoList = captionService.toDtoList(image.getCaptions());
-
-        ImageDto updatedImageDto = ImageDto.builder()
-                .captions(captionService.toStringList(captionDtoList))
-                .build();
-
-        return new ResponseEntity<>(updatedImageDto, HttpStatus.OK);
-    }
+    // 캡션 수정 기능이 필요한지?
+//    public ResponseEntity<ImageDto> update(ImageDto imageDto) {
+//
+//        Image image = imageRepository.findByIdx(imageDto.getIdx())
+//                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + imageDto.getIdx()));
+//
+//        // 캡션 수정, update
+//        image.updateCaption(captionRepository.findByImage(image.getIdx()));  // jpa사용시 영속성 컨텍스트 유지가 되므로 entity값만 변경해도 db 반영됨(별도 update query 필요x)
+//
+//        // 저장 경로 수정
+////        image.updateSavedPath(imageDto.getSavedPath());
+//        List<CaptionDto> captionDtoList = captionService.toDtoList(image.getCaptions());
+//
+//        ImageDto updatedImageDto = ImageDto.builder()
+//                .captions(captionService.toStringList(captionDtoList))
+//                .build();
+//
+//        return new ResponseEntity<>(updatedImageDto, HttpStatus.OK);
+//    }
 }
