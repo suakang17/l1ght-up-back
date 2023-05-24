@@ -18,11 +18,12 @@ public class ImageDto {
     private Long idx;
     private Long memberIdx;
     private String savedPath;
-    private List<Caption> captions;
+    private List<String> captions;
     private Gps gps;
 
+
     @Builder
-    public ImageDto(Long idx, Long memberIdx, String savedPath, List<Caption> captions, Gps gps) {
+    public ImageDto(Long idx, Long memberIdx, String savedPath, List<String> captions, Gps gps) {
         this.idx = idx;
         this.memberIdx = memberIdx;
         this.savedPath = savedPath;
@@ -40,7 +41,7 @@ public class ImageDto {
     
     // update시 수정할 요소가 뭐가 있을지에 대한 고민 필요 - 관리자 - 캡션, 경로 ...
     @Builder
-    public ImageDto(List<Caption> captions) {
+    public ImageDto(List<String> captions) {
         this.captions = captions;
     }
 
@@ -50,7 +51,7 @@ public class ImageDto {
                 .member(member)
                 .gps(gps)
                 .savedPath(savedPath)
-                .captions(captions)
+//                .captions("")   // 우선 캡션 없이 저장 -> imgIdx 생성 -> 생성된 imgIdx 기반 캡션 저장
                 .build();
     }
 }

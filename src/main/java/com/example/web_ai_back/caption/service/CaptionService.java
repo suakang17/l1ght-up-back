@@ -4,12 +4,17 @@ import com.example.web_ai_back.caption.domain.Caption;
 import com.example.web_ai_back.caption.dto.CaptionDto;
 import com.example.web_ai_back.caption.repository.CaptionRepository;
 import com.example.web_ai_back.image.domain.Image;
+import com.example.web_ai_back.image.dto.ImageDto;
 import com.example.web_ai_back.image.repository.ImageRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -57,5 +62,47 @@ public class CaptionService {
                 .build();
 
         return new ResponseEntity<>(updatedCaptionDto, HttpStatus.OK);
+    }
+
+    public Caption toEntityWhileSaveImage(Image image, String originalCaption) {
+
+        return Caption.builder()
+                .image(image)
+                .originalCaption(originalCaption)
+                .build();
+    }
+
+    public List<Caption> toEntityList(List<String> captions, ImageDto imageDto) {
+
+        Image image = imageRepository.findByIdx(imageDto.getIdx())
+                .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다. idx=" + imageDto.getIdx()));
+
+        List<Caption> newCaptionList = captions.stream().map(o -> toEntityWhileSaveImage(image, o)).collect(Collectors.toList());
+
+        return newCaptionList;
+    }
+
+    public List<CaptionDto> toDtoList(List<Caption> captions) {
+
+        List<CaptionDto> captionDtoList = captions.stream().map(o -> toDto(o)).collect(Collectors.toList());
+
+        return captionDtoList;
+    }
+
+    private CaptionDto toDto(Caption o) {
+
+        return CaptionDto.builder()
+                .originalCaption(o.getOriginalCaption())
+                .dangerFactor(o.getDangerFactor())
+                .imageIdx(o.getImage().getIdx())
+                .idx(o.getIdx())
+                .build();
+    }
+
+    public List<String> toStringList(List<CaptionDto> captionDtoList) {
+
+        List<String> stringCaptionList = captionDtoList.stream().map(o -> o.getOriginalCaption().toString()).collect(Collectors.toList());
+
+        return stringCaptionList;
     }
 }

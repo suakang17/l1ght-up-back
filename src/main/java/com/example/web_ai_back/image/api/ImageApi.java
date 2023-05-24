@@ -25,7 +25,7 @@ public class ImageApi {
     }
 
     @PutMapping("/imageIdx")
-    public ResponseEntity<ImageDto> imageUpdate(@RequestParam Long idx, @RequestBody ImageDto imageDto) {
-        return imageService.update(idx, imageDto);
+    public ResponseEntity<ImageDto> imageUpdate(@RequestBody ImageDto imageDto) {
+        return imageService.update(imageDto);
     }
 }
