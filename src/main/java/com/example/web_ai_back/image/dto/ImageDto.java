@@ -4,6 +4,8 @@ import com.example.web_ai_back.caption.domain.Caption;
 import com.example.web_ai_back.gps.Gps;
 import com.example.web_ai_back.image.domain.Image;
 import com.example.web_ai_back.member.domain.Member;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
+@Builder(builderClassName = "ImageDtoBuilder", toBuilder = true)
+@JsonDeserialize(builder = ImageDto.ImageDtoBuilder.class)
 public class ImageDto {
 
     private Long idx;
@@ -21,6 +24,10 @@ public class ImageDto {
     private List<String> captions;
     private Gps gps;
 
+    @JsonPOJOBuilder(withPrefix = "")
+    public static class ImageDtoBuilder {
+
+    }
 
     @Builder
     public ImageDto(Long idx, Long memberIdx, String savedPath, List<String> captions, Gps gps) {
