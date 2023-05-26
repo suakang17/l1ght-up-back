@@ -1,7 +1,7 @@
-package com.example.web_ai_back.imageAlter.domain;
+package com.example.web_ai_back.imageLogging.domain;
 
 import com.example.web_ai_back.gps.Gps;
-import com.example.web_ai_back.imageAlter.dto.ImageDto;
+import com.example.web_ai_back.imageLogging.dto.ImageLoggingDto;
 import com.example.web_ai_back.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Image {
+public class ImageLogging {
 
     @Id
     @Column(name = "IMAGE_IDX")
@@ -45,9 +45,9 @@ public class Image {
 
 
     // imageEntity -> imgaeDto method
-    public ImageDto toDTO(Image image){
+    public ImageLoggingDto toDTO(ImageLogging image){
 
-        ImageDto imageDto = ImageDto.builder()
+        ImageLoggingDto imageLoggingDto = ImageLoggingDto.builder()
                 .memberIdx(image.getMember().getIdx())
                 .idx(image.getIdx())
                 .gps(image.getGps())
@@ -59,6 +59,6 @@ public class Image {
                 .factor5(image.getFactor5())
                 .build();
 
-        return imageDto;
+        return imageLoggingDto;
     }
 }

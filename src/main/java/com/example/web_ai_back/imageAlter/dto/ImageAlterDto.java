@@ -1,7 +1,7 @@
-package com.example.web_ai_back.imageLogging.dto;
+package com.example.web_ai_back.imageAlter.dto;
 
 import com.example.web_ai_back.gps.Gps;
-import com.example.web_ai_back.imageLogging.domain.Image;
+import com.example.web_ai_back.imageAlter.domain.ImageAlter;
 import com.example.web_ai_back.member.domain.Member;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -10,8 +10,8 @@ import lombok.Getter;
 
 @Getter
 @Builder(builderClassName = "ImageDtoBuilder", toBuilder = true)
-@JsonDeserialize(builder = ImageDto.ImageDtoBuilder.class)
-public class ImageDto {
+@JsonDeserialize(builder = ImageAlterDto.ImageDtoBuilder.class)
+public class ImageAlterDto {
 
     private Long idx;
     private Long memberIdx;
@@ -31,7 +31,7 @@ public class ImageDto {
     }
 
     @Builder
-    public ImageDto(Long idx, Long memberIdx, String savedPath, Gps gps, int factor1, int factor2, int factor3, int factor4, int factor5) {
+    public ImageAlterDto(Long idx, Long memberIdx, String savedPath, Gps gps, int factor1, int factor2, int factor3, int factor4, int factor5) {
         this.idx = idx;
         this.memberIdx = memberIdx;
         this.savedPath = savedPath;
@@ -47,9 +47,9 @@ public class ImageDto {
 
 
     // imageDto -> imgaeEntity method
-    public Image toEntity(Member member) {
+    public ImageAlter toEntity(Member member) {
 
-        return Image.builder()
+        return ImageAlter.builder()
                 .member(member)
                 .savedPath(savedPath)
                 .gps(gps)

@@ -1,7 +1,7 @@
-package com.example.web_ai_back.imageLogging.domain;
+package com.example.web_ai_back.imageAlter.domain;
 
 import com.example.web_ai_back.gps.Gps;
-import com.example.web_ai_back.imageLogging.dto.ImageDto;
+import com.example.web_ai_back.imageAlter.dto.ImageAlterDto;
 import com.example.web_ai_back.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Image {
+public class ImageAlter {
 
     @Id
     @Column(name = "IMAGE_IDX")
@@ -45,20 +45,20 @@ public class Image {
 
 
     // imageEntity -> imgaeDto method
-    public ImageDto toDTO(Image image){
+    public ImageAlterDto toDTO(ImageAlter imageAlter){
 
-        ImageDto imageDto = ImageDto.builder()
-                .memberIdx(image.getMember().getIdx())
-                .idx(image.getIdx())
-                .gps(image.getGps())
-                .savedPath(image.getSavedPath())
-                .factor1(image.getFactor1())
-                .factor2(image.getFactor2())
-                .factor3(image.getFactor3())
-                .factor4(image.getFactor4())
-                .factor5(image.getFactor5())
+        ImageAlterDto imageAlterDto = ImageAlterDto.builder()
+                .memberIdx(imageAlter.getMember().getIdx())
+                .idx(imageAlter.getIdx())
+                .gps(imageAlter.getGps())
+                .savedPath(imageAlter.getSavedPath())
+                .factor1(imageAlter.getFactor1())
+                .factor2(imageAlter.getFactor2())
+                .factor3(imageAlter.getFactor3())
+                .factor4(imageAlter.getFactor4())
+                .factor5(imageAlter.getFactor5())
                 .build();
 
-        return imageDto;
+        return imageAlterDto;
     }
 }
