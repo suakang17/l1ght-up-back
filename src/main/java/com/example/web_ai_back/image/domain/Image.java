@@ -32,6 +32,8 @@ public class Image {
     @Column(nullable = false)
     private Gps gps;
 
+    private String originalCaption;
+
     private int factor1;
 
     private int factor2;
@@ -52,6 +54,7 @@ public class Image {
                 .memberIdx(image.getMember().getIdx())
                 .idx(image.getIdx())
                 .gps(image.getGps())
+                .originalCaption(image.getOriginalCaption())
                 .savedPath(image.getSavedPath())
                 .factor1(image.getFactor1())
                 .factor2(image.getFactor2())
@@ -71,6 +74,7 @@ public class Image {
                 .idx(image.getIdx())
                 .gps(image.getGps())
                 .savedPath(image.getSavedPath())
+                .originalCaption(image.getOriginalCaption())
                 .factor1(image.getFactor1())
                 .factor2(image.getFactor2())
                 .factor3(image.getFactor3())

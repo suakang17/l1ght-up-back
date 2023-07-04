@@ -18,6 +18,8 @@ public class ImageAlterDto {
     private String savedPath;
     private Gps gps;
 
+    private String originalCaption;
+
     private int factor1;
     private int factor2;
     private int factor3;
@@ -31,11 +33,12 @@ public class ImageAlterDto {
     }
 
 //    @Builder
-    public ImageAlterDto(Long idx, Long memberIdx, String savedPath, Gps gps, int factor1, int factor2, int factor3, int factor4, int factor5) {
+    public ImageAlterDto(Long idx, Long memberIdx, String savedPath, Gps gps, String originalCaption, int factor1, int factor2, int factor3, int factor4, int factor5) {
         this.idx = idx;
         this.memberIdx = memberIdx;
         this.savedPath = savedPath;
         this.gps = gps;
+        this.originalCaption = originalCaption;
         this.factor1 = factor1;
         this.factor2 = factor2;
         this.factor3 = factor3;
@@ -53,6 +56,7 @@ public class ImageAlterDto {
                 .member(member)
                 .savedPath(savedPath)
                 .gps(gps)
+                .originalCaption(originalCaption)
                 .factor1(factor1)
                 .factor2(factor2)
                 .factor3(factor3)

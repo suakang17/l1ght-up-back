@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.sql.Timestamp;
@@ -35,6 +36,8 @@ public class ImageLogging {
     @Column(nullable = false)
     private Gps gps;
 
+    private String originalCaption;
+
     private int factor1;
 
     private int factor2;
@@ -45,7 +48,7 @@ public class ImageLogging {
 
     private int factor5;
 
-    @CreatedDate
+    @CreationTimestamp
     private Timestamp createdDate;
 
     public void updateSavedPath(String savedPath) { this.savedPath = savedPath; }
@@ -58,6 +61,7 @@ public class ImageLogging {
                 .memberIdx(imageLogging.getMember().getIdx())
                 .idx(imageLogging.getIdx())
                 .gps(imageLogging.getGps())
+                .originalCaption(imageLogging.getOriginalCaption())
                 .savedPath(imageLogging.getSavedPath())
                 .factor1(imageLogging.getFactor1())
                 .factor2(imageLogging.getFactor2())
