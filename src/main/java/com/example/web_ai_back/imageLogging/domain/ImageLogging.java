@@ -8,6 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.sql.Timestamp;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,22 +45,25 @@ public class ImageLogging {
 
     private int factor5;
 
+    @CreatedDate
+    private Timestamp createdDate;
+
     public void updateSavedPath(String savedPath) { this.savedPath = savedPath; }
 
 
-    // imageEntity -> imgaeDto method
-    public ImageLoggingDto toDTO(ImageLogging image){
+    // imageLoggingEntity -> imgaeLoggingDto method
+    public ImageLoggingDto toImageLoggingDTO(ImageLogging imageLogging){
 
         ImageLoggingDto imageLoggingDto = ImageLoggingDto.builder()
-                .memberIdx(image.getMember().getIdx())
-                .idx(image.getIdx())
-                .gps(image.getGps())
-                .savedPath(image.getSavedPath())
-                .factor1(image.getFactor1())
-                .factor2(image.getFactor2())
-                .factor3(image.getFactor3())
-                .factor4(image.getFactor4())
-                .factor5(image.getFactor5())
+                .memberIdx(imageLogging.getMember().getIdx())
+                .idx(imageLogging.getIdx())
+                .gps(imageLogging.getGps())
+                .savedPath(imageLogging.getSavedPath())
+                .factor1(imageLogging.getFactor1())
+                .factor2(imageLogging.getFactor2())
+                .factor3(imageLogging.getFactor3())
+                .factor4(imageLogging.getFactor4())
+                .factor5(imageLogging.getFactor5())
                 .build();
 
         return imageLoggingDto;

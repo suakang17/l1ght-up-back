@@ -23,9 +23,9 @@ public class ImageLoggingService {
         Member member = memberRepository.findByIdx(imageLoggingDto.getMemberIdx())
                 .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다. idx=" + imageLoggingDto.getMemberIdx()));
 
-        ImageLogging newImage = imageLoggingRepository.save(imageLoggingDto.toEntity(member));
+        ImageLogging newImageLogging = imageLoggingRepository.save(imageLoggingDto.toImageLoggingEntity(member));
 
-        ImageLoggingDto newImageLoggingDto = newImage.toDTO(newImage);
+        ImageLoggingDto newImageLoggingDto = newImageLogging.toImageLoggingDTO(newImageLogging);
 
         return new ResponseEntity<>(newImageLoggingDto, HttpStatus.OK);
     }
@@ -35,7 +35,7 @@ public class ImageLoggingService {
         ImageLogging image = imageLoggingRepository.findByIdx(idx)
                 .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 존재하지 않습니다."));
 
-        ImageLoggingDto imageLoggingDto = image.toDTO(image);
+        ImageLoggingDto imageLoggingDto = image.toImageLoggingDTO(image);
 
         return new ResponseEntity<>(imageLoggingDto, HttpStatus.OK);
     }

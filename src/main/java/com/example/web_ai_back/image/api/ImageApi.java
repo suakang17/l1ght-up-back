@@ -5,6 +5,7 @@ import com.example.web_ai_back.image.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.web_ai_back.imageLogging.api.*;
 
 @RestController
 @RequestMapping("/api/image")

@@ -1,7 +1,9 @@
 package com.example.web_ai_back.imageAlter.domain;
 
 import com.example.web_ai_back.gps.Gps;
+import com.example.web_ai_back.image.domain.Image;
 import com.example.web_ai_back.imageAlter.dto.ImageAlterDto;
+import com.example.web_ai_back.imageLogging.dto.ImageLoggingDto;
 import com.example.web_ai_back.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,8 +46,8 @@ public class ImageAlter {
     public void updateSavedPath(String savedPath) { this.savedPath = savedPath; }
 
 
-    // imageEntity -> imgaeDto method
-    public ImageAlterDto toDTO(ImageAlter imageAlter){
+    // imageAlterEntity -> imgaeAlterDto method
+    public ImageAlterDto toImageAlterDTO(ImageAlter imageAlter){
 
         ImageAlterDto imageAlterDto = ImageAlterDto.builder()
                 .memberIdx(imageAlter.getMember().getIdx())
@@ -60,5 +62,23 @@ public class ImageAlter {
                 .build();
 
         return imageAlterDto;
+    }
+
+    // imageAlterEntity -> imgaeLoggingDto method
+    public ImageLoggingDto imageAlterToImageLoggingDTO(ImageAlter imageAlter){
+
+        ImageLoggingDto imageLoggingDto = ImageLoggingDto.builder()
+                .memberIdx(imageAlter.getMember().getIdx())
+                .idx(imageAlter.getIdx())
+                .gps(imageAlter.getGps())
+                .savedPath(imageAlter.getSavedPath())
+                .factor1(imageAlter.getFactor1())
+                .factor2(imageAlter.getFactor2())
+                .factor3(imageAlter.getFactor3())
+                .factor4(imageAlter.getFactor4())
+                .factor5(imageAlter.getFactor5())
+                .build();
+
+        return imageLoggingDto;
     }
 }

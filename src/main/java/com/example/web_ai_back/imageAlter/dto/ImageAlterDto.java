@@ -30,7 +30,7 @@ public class ImageAlterDto {
 
     }
 
-    @Builder
+//    @Builder
     public ImageAlterDto(Long idx, Long memberIdx, String savedPath, Gps gps, int factor1, int factor2, int factor3, int factor4, int factor5) {
         this.idx = idx;
         this.memberIdx = memberIdx;
@@ -47,7 +47,7 @@ public class ImageAlterDto {
 
 
     // imageDto -> imgaeEntity method
-    public ImageAlter toEntity(Member member) {
+    public ImageAlter toImageAlterEntity(Member member) {
 
         return ImageAlter.builder()
                 .member(member)

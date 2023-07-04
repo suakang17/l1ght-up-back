@@ -30,7 +30,7 @@ public class ImageLoggingDto {
 
     }
 
-    @Builder
+//    @Builder
     public ImageLoggingDto(Long idx, Long memberIdx, String savedPath, Gps gps, int factor1, int factor2, int factor3, int factor4, int factor5) {
         this.idx = idx;
         this.memberIdx = memberIdx;
@@ -47,7 +47,7 @@ public class ImageLoggingDto {
 
 
     // imageDto -> imgaeEntity method
-    public ImageLogging toEntity(Member member) {
+    public ImageLogging toImageLoggingEntity(Member member) {
 
         return ImageLogging.builder()
                 .member(member)
